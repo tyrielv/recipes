@@ -2,9 +2,9 @@
 """Generates README.md as a table of contents for all recipe markdown files."""
 
 import os
-import re
 
 REPO_ROOT = os.path.join(os.path.dirname(__file__), "..")
+RECIPES_DIR = os.path.join(REPO_ROOT, "recipes")
 README_PATH = os.path.join(REPO_ROOT, "README.md")
 
 
@@ -27,14 +27,12 @@ def slug_to_title(slug: str) -> str:
 def get_recipes():
     """Return sorted list of (title, filename) tuples for all recipes."""
     recipes = []
-    for entry in sorted(os.listdir(REPO_ROOT)):
+    for entry in sorted(os.listdir(RECIPES_DIR)):
         if not entry.endswith(".md"):
-            continue
-        if entry.lower() == "readme.md":
             continue
         slug = entry[:-3]  # strip .md
         title = slug_to_title(slug)
-        recipes.append((title, entry))
+        recipes.append((title, f"recipes/{entry}"))
     return recipes
 
 

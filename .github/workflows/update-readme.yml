@@ -6,8 +6,7 @@ on:
       - main
       - master
     paths:
-      - "**.md"
-      - "!README.md"
+      - "recipes/**.md"
 
 jobs:
   update-readme:
